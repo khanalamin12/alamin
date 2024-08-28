@@ -1,0 +1,473 @@
+/* Basic reset and background color */
+* {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  box-sizing: border-box; /* Ensures padding doesn't affect the element's width/height */
+ 
+}
+
+body {
+  background-color: transparent;
+}
+
+/* Nav styling */
+header nav {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  overflow-x: hidden;
+  
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  padding: 4px;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+header nav ul li {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+header nav ul li a {
+  display: inline-block;
+  padding: 5px 15px;
+  text-decoration: none;
+  color: white;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  transition: color 0.3s, font-size 0.3s, text-shadow 0.3s, transform 0.3s;
+  overflow-x: hidden;
+}
+
+header nav ul li a:hover {
+  color: red;
+  font-size: 20px;
+  text-shadow: 2px 0px 4px red;
+  overflow-x: hidden;
+}
+
+header nav ul li a:active {
+  transform: scale(1.4);
+  overflow-x: hidden;
+}
+
+/* Name Section */
+.name h1, .name h2 {
+  text-align: center;
+  margin-top: 10px;
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  background: linear-gradient(-25deg, #5662f6 0%, #7fffd4 100%);
+  color: transparent;
+  background-clip: text;
+  transition: transform 0.3s;
+  overflow: hidden;
+  letter-spacing: 3px;
+}
+
+.name h1:hover, .name h2:hover {
+  transform: translateY(-4px);
+}
+
+.name .pro img {
+  max-width: 60%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
+  position: relative;
+  animation-name: khan;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  width: 60%;
+  height: 60%;
+ overflow-x: hidden;
+}
+
+@keyframes khan {
+  0% {
+    border: blue solid 3px;
+  }
+  50% {
+    border: green solid 3px;
+  }
+  100% {
+    border: red solid 3px;
+  }
+}
+
+.pro img:hover {
+  border-radius: 4px;
+  border: skyblue solid 3px;
+  overflow-x: hidden;
+}
+
+div p {
+  color: white;
+  margin: 20px;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+p a {
+  color: red;
+}
+
+p a:hover {
+  color: green;
+}
+
+/* Skills Section */
+.skill h2, .prog h2 {
+  text-align: center;
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  background: linear-gradient(-25deg, #5662f6 0%, #7fffd4 100%);
+  color: transparent;
+  background-clip: text;
+  margin-top: 20px;
+  transition: scale 0.3s, transform 0.3s;
+}
+
+.skill h2:hover, .prog h2:hover {
+  transform: translateY(-4px);
+  scale: 1.1;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  margin-top: 0;
+  overflow-x: hidden;
+}
+
+/* Responsive Adjustments for PC Users */
+@media screen and (max-width: 1600px) {
+  .name h1, .name h2, .skill h2, .prog h2 {
+    font-size: 2.5rem;
+  }
+
+  .name .pro img {
+    max-width: 70%;
+    overflow-x: hidden;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .name h1, .name h2, .skill h2, .prog h2 {
+    font-size: 2rem;
+  }
+  header nav ul li a {
+    padding: 8px 30px;
+  }
+
+  .name .pro img {
+    max-width: 80%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .name h1, .name h2, .skill h2, .prog h2 {
+    font-size: 1.8rem;
+  }
+
+  .name .pro img {
+    max-width: 90%;
+  }
+
+  header nav ul li a {
+    padding: 8px 27px;
+  }
+}
+
+/* Skill Container */
+.skill-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: transparent;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.skill-container h2 {
+  text-align: center;
+  color: white;
+}
+
+.skill {
+  margin-bottom: 25px;
+}
+
+.skill-name {
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 5px;
+  display: inline-block;
+  width: 100px;
+  
+}
+
+/*only for c++*/
+.skill-name2 {
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 5px;
+  display: inline-block;
+  width: 100px;
+  margin-top:16px;
+  
+}
+/*only for c++*/
+
+
+.progress-bar {
+  background-color: #333;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 20px;
+  margin-top: 5px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.progress {
+  height: 100%;
+  line-height: 20px;
+  text-align: right;
+  padding-right: 10px;
+  color: white;
+  border-radius: 20px;
+  font-family: "Oswald", sans-serif;
+  font-size: 14px;
+  opacity: 0.8;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  animation-play-state: paused;
+}
+
+/* Specific skill percentages */
+.html {
+  width: 98%;
+  background: linear-gradient(to right, #f39c12, #e67e22);
+  animation-delay: 0.2s;
+  animation: load 2s ease-in-out forwards;
+  animation-duration: 1s;
+}
+
+.css {
+  width: 95%;
+  background: linear-gradient(to right, #3498db, #2980b9);
+  animation-delay: 0.4s;
+  animation: load2 2s ease-in-out forwards;
+  animation-duration: 1s;
+}
+
+.python {
+  width: 90%;
+  background: linear-gradient(to right, #2ecc71, #27ae60);
+  animation-delay: 0.6s;
+  animation: load3 2s ease-in-out forwards;
+  animation-duration: 1s;
+}
+
+.javascript {
+  width: 90%;
+  background: linear-gradient(to right, #f1c40f, #f39c12);
+  animation-delay: 0.8s;
+  animation: load4 2s ease-in-out forwards;
+  animation-duration: 1s;
+}
+
+.cpp {
+  width: 80%;
+  background: linear-gradient(to right, #9b59b6, #8e44ad);
+ 
+  animation-delay: 1s;
+  animation: load5 2s ease-in-out forwards;
+  animation-duration: 1s;
+}
+
+/* Keyframes for loading animation */
+@keyframes load {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 98%;
+  }
+}
+
+@keyframes load2 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 95%;
+  }
+}
+
+@keyframes load3 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 90%;
+  }
+}
+
+@keyframes load4 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 90%;
+  }
+}
+
+@keyframes load5 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 80%;
+  }
+}
+
+
+/* Footer container styling */
+.footer {
+  background-color: #000; /* Black background for the footer */
+  padding: 20px;
+  text-align: center;
+}
+
+/* Container for social media icons */
+.footer .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Space between icons */
+}
+
+/* Style for individual social media icons */
+.footer .social-icons div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  
+  
+}
+
+/* Style for FontAwesome icons */
+.footer .social-icons i {
+  color: #ccc; /* Light grey color for icons */
+  font-size: 30px; /* Increased icon size */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.yt>i:hover{
+  transform: scale(1.1);
+  color:red;
+  
+}
+
+
+.fb >i:hover{
+  transform: scale(1.1);
+  color:#1877F2;
+  
+}
+
+.intra >i:hover{
+  
+  transform: scale(1.1);
+    color:  #fcb045;
+  
+  
+  
+}
+.twi > i:hover{
+  
+transform: scale(1.1);
+   color: #1DA1F2;
+  
+  
+}
+.linkid > i:hover{
+transform: scale(1.1);
+color: #0a66c2;
+  
+  
+  
+}
+
+
+.ending{
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  letter-spacing: 5px
+  
+  
+  
+  
+  
+}
+
+.ending:hover{
+  
+ text-shadow: 2px 0px 2px white;
+  
+  
+  
+}
+
+
+
+
+i{
+  background-color:transparent ;
+  color:black ;
+  
+  
+  
+}
+#scrollUpBtn {
+    position: fixed;
+    bottom: 30px;
+    left: 20px; 
+    z-index: 100; 
+    background-color: deepskyblue;  
+    border: none; 
+    width: 50px; 
+    height: 50px; 
+    cursor: pointer;  
+    font-size: 24px; 
+    display: none;
+    transition: all 0.3s ease; 
+    
+    border-radius: 20px;
+    
+}
+
+
+
+
+
+#scrollUpBtn:active {
+    transform: scale(0.6); /* Slight shrinking effect when clicked */
+}
+
+/* Animation for smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}

@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensures padding doesn't affect the element's width/height */
+  overflow-x: hidden;
+  background-color: black;
+  
+}
+/* Nav styling stars*/
+header nav {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  border-radius: 5px;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  padding: 4px;
+  margin: 0;
+}
+
+header nav ul li {
+  margin: 0;
+}
+
+header nav ul li a {
+  display: inline-block; 
+  padding: 5px 15px;
+  text-decoration: none;
+  color: white;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  transition: color 0.3s, font-size 0.3s, text-shadow 0.3s, transform 0.3s;
+}
+
+header nav ul li a:hover {
+  color: red;
+  font-size: 20px;
+  text-shadow: 2px 0px 4px red;
+}
+
+header nav ul li a:active {
+  transform: scale(1.4);
+}
+/* Nav styling ends*/
+
+
+
+
+ 
+
+  
+ .h{
+    
+    
+   color:white;
+    text-align: center;
+    padding-top: 300px;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    text-shadow: 1px 1px 9px white
+    
+    
+    
+  }

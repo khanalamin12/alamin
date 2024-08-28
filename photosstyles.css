@@ -1,0 +1,314 @@
+/* Global reset and common styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensures padding doesn't affect the element's width/height */
+  background: black;
+}
+
+/* Nav styling starts */
+header nav {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  border-radius: 5px;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  padding: 4px;
+  margin: 0;
+}
+
+header nav ul li {
+  margin: 0;
+}
+
+header nav ul li a {
+  display: inline-block; 
+  padding: 5px 15px;
+  text-decoration: none;
+  color: white;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  transition: color 0.3s, font-size 0.3s, text-shadow 0.3s, transform 0.3s;
+}
+
+header nav ul li a:hover {
+  color: red;
+  font-size: 20px;
+  text-shadow: 2px 0px 4px red;
+}
+
+header nav ul li a:active {
+  transform: scale(1.4);
+}
+/* Nav styling ends */
+
+/* Reset and common styles for photo gallery container */
+.photo-gallery-container * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Gallery container styling */
+.photo-gallery-container {
+  background-color: #000; /* Black background */
+  text-align: center;
+  width: 95%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid #444;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Lighting effect on the container */
+}
+
+.photo-gallery-container h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #fff;
+  border-bottom: 2px solid #444;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: textGlow 1.5s ease-in-out infinite alternate; /* Lighting effect on text */
+}
+
+/* Gallery items arranged vertically for mobile */
+.photo-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.photo-gallery-item {
+  background-color: #222;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%; /* Ensure items take full width */
+  max-width: 800px; /* Limit maximum width */
+}
+
+.photo-gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Download button styling */
+.download-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #444;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-family: sans-serif;
+  font-size: 14px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+}
+
+.download-btn:hover {
+  background-color: #555;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Like and Comment button styling */
+.comment-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-family: sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #28a745;
+  color: #fff;
+}
+
+.comment-btn:hover {
+  background-color: #218838;
+}
+
+.like-count {
+  margin-left: 5px;
+}
+
+/* Comments container styling */
+.comments-container {
+  margin-top: 10px;
+  color: #fff;
+}
+
+.comments-container textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background-color: #333;
+  color: #fff;
+  resize: vertical;
+}
+
+.comments-container button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comments-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Fullscreen modal styling */
+.fullscreen-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.fullscreen-modal-content {
+  margin: auto;
+  display: block;
+  width: 90%;
+  max-width: 1000px;
+  height: auto;
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: #bbb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .photo-gallery-container h1 {
+    font-size: 28px;
+  }
+
+  .photo-gallery-item {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .photo-gallery-container h1 {
+    font-size: 24px;
+  }
+
+  .photo-gallery-item {
+    max-width: 100%;
+  }
+
+  .fullscreen-modal-content {
+    width: 95%;
+  }
+}
+
+/* Grid layout for PC users */
+@media (min-width: 769px) {
+  .photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns layout */
+    gap: 20px;
+  }
+
+  .photo-gallery-item {
+    background-color: #222;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+  }
+
+  .photo-gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+
+.photo-gallery-container h1:hover {
+ text-shadow: 1px 1px 6px white;
+  
+}
+
+
+
+
+
+i{
+  background-color:transparent  ;
+  color:black ;
+  
+  
+  
+}
+#scrollUpBtn {
+    position: fixed;
+    bottom: 30px;
+    left: 20px; 
+    z-index: 100; 
+    background-color: deepskyblue;  
+    border: none; 
+    width: 50px; 
+    height: 50px; 
+    cursor: pointer;  
+    font-size: 24px; 
+    display: none;
+    transition: all 0.3s ease; 
+    
+    border-radius: 20px;
+    
+}
+
+
+
+
+
+#scrollUpBtn:active {
+    transform: scale(0.6); /* Slight shrinking effect when clicked */
+}
+
+/* Animation for smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
