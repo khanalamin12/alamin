@@ -1,55 +1,278 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Website</title>
-  <link rel="stylesheet" href="contactstyles.css">
-  <!-- Font links starts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-  <!-- Font links ends -->
-</head>
-<body>
-<header>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="photos.html">Photos</a></li>
-      <li><a href="videos.html">Videos</a></li>
-      <li><a href="contact.html" style="color:red;font-size: 20px; text-shadow: 2px 0px 4px red;">Contact</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-    </ul>
-  </nav>
-</header>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
 
-<h1>Contact with me:</h1>
+/* Nav styling starts */
+header nav {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  border-radius: 5px;
+}
 
-<div class="container">
-  <form action="https://formspree.io/f/xvgpdnpn" method="post" enctype="multipart/form-data">
-    <label for="name">Name:</label>
-    <input type="text" name="name" id="name" placeholder="Enter your name" required> <br />
-    
-    <label for="sub">Subject:</label>
-    <input type="text" name="sub" id="sub" placeholder="Enter your subject" required> <br />
-    
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email" placeholder="example@gmail.com" required> <br />
-    
-    <label for="message">Message:</label>
-    <textarea name="message" id="message" cols="30" rows="10" placeholder="Drop your message"></textarea> <br />
-    
-    <!-- File upload input -->
-    <label for="file">Attach a file:</label>
-    <input type="file" name="file" id="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.zip"> <br />
-    
-    <div class="button-container">
-      <button type="submit">Send</button>
-    </div>
-  </form>
-</div>
+header nav ul {
+  list-style: none;
+  display: flex;
+  padding: 4px;
+  margin: 0;
+}
 
-</body>
-</html>
+header nav ul li {
+  margin: 0;
+}
+
+header nav ul li a {
+  display: inline-block; 
+  padding: 5px 15px;
+  text-decoration: none;
+  color: white;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  transition: color 0.3s, font-size 0.3s, text-shadow 0.3s, transform 0.3s;
+}
+
+header nav ul li a:hover {
+  color: red;
+  font-size: 20px;
+  text-shadow: 2px 0px 4px red;
+}
+
+header nav ul li a:active {
+  transform: scale(1.4);
+}
+/* Nav styling ends */
+
+body {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 10px;
+  background: linear-gradient(-25deg, #5662f6 0%, #7fffd4 100%);
+  color: transparent;
+  background-clip: text;
+  transition: transform 0.3s;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: "Oswald", sans-serif;
+  font-style: normal;
+}
+
+.container {
+  background-color: black;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 3px auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  background: linear-gradient(to right, #00B4DB, #00FFEE);
+  color: transparent;
+  background-clip: text;
+  transition: transform 0.3s;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: "Oswald", sans-serif;
+  font-style: normal;
+}
+
+input[type="text"], input[type="email"], textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: black;
+  font-size: 16px;
+  color: white;
+  font-family: Verdana, sans-serif;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  background: linear-gradient(to right, #1e90ff, #00bfff);
+  border: none;
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s ease;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+button:hover {
+  background: linear-gradient(to right, #00bfff, #1e90ff);
+}
+
+/* File input styling */
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  font-family: Verdana, sans-serif;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+input[type="file"]::file-selector-button {
+  background: linear-gradient(to right, #1e90ff, #00bfff);
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: linear-gradient(to right, #00bfff, #1e90ff);
+}
+
+input[type="file"]:hover {
+  box-shadow: 1px 1px 7px white;
+}
+
+/* Responsive Adjustments for PC Users */
+@media screen and (max-width: 1600px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .container {
+    max-width: 700px;
+    padding: 25px;
+  }
+
+  button {
+    width: 20rem;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .container {
+    max-width: 650px;
+    padding: 20px;
+  }
+
+  button {
+    width: 18rem;
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .container {
+    max-width: 600px;
+    padding: 18px;
+  }
+
+  button {
+    width: 16rem;
+    font-size: 14px;
+  }
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+textarea:hover {
+  box-shadow: 1px 1px 7px white;
+}
+
+/* Footer container styling */
+.footer {
+  background-color: #000;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.footer .social-icons div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer .social-icons i {
+  color: #ccc;
+  font-size: 30px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.yt > i:hover {
+  transform: scale(1.1);
+  color: red;
+}
+
+.fb > i:hover {
+  transform: scale(1.1);
+  color: #1877F2;
+}
+
+.intra > i:hover {
+  transform: scale(1.1);
+  color: #fcb045;
+}
+
+.twi > i:hover {
+  transform: scale(1.1);
+  color: #1DA1F2;
+}
+
+.linkid > i:hover {
+  transform: scale(1.1);
+  color: #0a66c2;
+}
+
+.ending {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  letter-spacing: 5px;
+}
+
+.ending:hover {
+  text-shadow: 2px 0px 2px white;
+}
