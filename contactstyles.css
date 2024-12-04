@@ -101,8 +101,8 @@ input[type="text"], input[type="email"], textarea {
   box-sizing: border-box;
   background-color: black;
   font-size: 16px;
-  color:white;
-  font-family:verdana;
+  color: white;
+  font-family: Verdana, sans-serif;
 }
 
 textarea {
@@ -113,7 +113,7 @@ button {
   background: linear-gradient(to right, #1e90ff, #00bfff);
   border: none;
   color: white;
-  padding: 10px ;
+  padding: 10px;
   font-size: 18px;
   border-radius: 5px;
   cursor: pointer;
@@ -128,9 +128,41 @@ button:hover {
   background: linear-gradient(to right, #00bfff, #1e90ff);
 }
 
+/* File input styling */
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  font-family: Verdana, sans-serif;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+input[type="file"]::file-selector-button {
+  background: linear-gradient(to right, #1e90ff, #00bfff);
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: linear-gradient(to right, #00bfff, #1e90ff);
+}
+
+input[type="file"]:hover {
+  box-shadow: 1px 1px 7px white;
+}
+
 /* Responsive Adjustments for PC Users */
 @media screen and (max-width: 1600px) {
-  /* For large desktops and smaller */
   h1 {
     font-size: 2.5rem;
   }
@@ -147,7 +179,6 @@ button:hover {
 }
 
 @media screen and (max-width: 1366px) {
-  /* For regular desktops and laptops */
   h1 {
     font-size: 2rem;
   }
@@ -164,7 +195,6 @@ button:hover {
 }
 
 @media screen and (max-width: 1024px) {
-  /* For smaller laptops */
   h1 {
     font-size: 1.8rem;
   }
@@ -180,122 +210,69 @@ button:hover {
   }
 }
 
-
-input[type="text"]:hover{
-  
-  box-shadow: 1px 1px 7px  white;
-}
-input[type="email"]:hover {
-
-  box-shadow: 1px 1px 7px white;
-}
+input[type="text"]:hover,
+input[type="email"]:hover,
 textarea:hover {
-
   box-shadow: 1px 1px 7px white;
 }
-
-
-/* Grid layout for PC users */
-@media (min-width: 1024px) {
-    .photo-gallery {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 3-column grid */
-        gap: 20px; /* Space between the items */
-    }
-
-    .photo-gallery-item {
-        width: 100%; /* Ensure the items fill the grid space */
-        max-width: none; /* Remove the max-width limitation */
-    }
-}
-
 
 /* Footer container styling */
 .footer {
-  background-color: #000; /* Black background for the footer */
+  background-color: #000;
   padding: 20px;
   text-align: center;
 }
 
-/* Container for social media icons */
 .footer .social-icons {
   display: flex;
   justify-content: center;
-  gap: 15px; /* Space between icons */
+  gap: 15px;
 }
 
-/* Style for individual social media icons */
 .footer .social-icons div {
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  
-  
 }
 
-/* Style for FontAwesome icons */
 .footer .social-icons i {
-  color: #ccc; /* Light grey color for icons */
-  font-size: 30px; /* Increased icon size */
-  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  color: #ccc;
+  font-size: 30px;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.yt>i:hover{
+.yt > i:hover {
   transform: scale(1.1);
-  color:red;
-  
+  color: red;
 }
 
-
-.fb >i:hover{
+.fb > i:hover {
   transform: scale(1.1);
-  color:#1877F2;
-  
+  color: #1877F2;
 }
 
-.intra >i:hover{
-  
+.intra > i:hover {
   transform: scale(1.1);
-    color:  #fcb045;
-  
-  
-  
-}
-.twi > i:hover{
-  
-transform: scale(1.1);
-   color: #1DA1F2;
-  
-  
-}
-.linkid > i:hover{
-transform: scale(1.1);
-color: #0a66c2;
-  
-  
-  
+  color: #fcb045;
 }
 
+.twi > i:hover {
+  transform: scale(1.1);
+  color: #1DA1F2;
+}
 
-.ending{
+.linkid > i:hover {
+  transform: scale(1.1);
+  color: #0a66c2;
+}
+
+.ending {
   font-family: "Barlow Condensed", sans-serif;
   font-weight: 100;
   font-style: normal;
-  letter-spacing: 5px
-  
-  
-  
-  
-  
+  letter-spacing: 5px;
 }
 
-.ending:hover{
-  
- text-shadow: 2px 0px 2px white;
-  
-  
-  
+.ending:hover {
+  text-shadow: 2px 0px 2px white;
 }
-
-
