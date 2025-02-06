@@ -5,20 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>My Website</title>
   <link rel="stylesheet" href="photosstyles.css">
-  <!-- Font links starts -->
+  
+  <!-- Font links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-  
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-  
-  
-  
-  <!-- Font links ends -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
 </head>
 <body>
+
 <header>
   <nav>
     <ul>
@@ -31,47 +27,21 @@
   </nav>
 </header>
 
-
 <button id="scrollUpBtn" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up-long"></i></button>
-.
+
 <div class="main" data-aos="fade-up-left" data-aos-duration="500">
-  
-
-<div class="photo-gallery-container">
-  <h1>Photo Gallery</h1>
-  <div class="photo-gallery">
-    <div class="photo-gallery-item">
-      <img src="i1.jpg" alt="Image 1">
-      <button class="download-btn" data-image="i1.jpg" data-filename="image1.jpg">Download</button>
-      <button class="comment-btn" onclick="window.open('https://www.facebook.com/share/p/ESDYKKsczsnUg4TB/?mibextid=oFDknk')">Comment</button>
-      <div class="comments-container" id="comments-1">
-        <!-- Comments will be added here -->
+  <div class="photo-gallery-container">
+    <h1>Photo Gallery</h1>
+    
+    <!-- Public Photos Section -->
+    <div class="photo-gallery">
+      <div class="photo-gallery-item">
+        <img src="i1.jpg" alt="Image 1">
+        <button class="download-btn" data-image="i1.jpg" data-filename="image1.jpg">Download</button>
+        <button class="comment-btn" onclick="window.open('https://www.facebook.com/share/p/ESDYKKsczsnUg4TB/')">Comment</button>
       </div>
-    </div>
-    
-      <div class="photo-gallery-item">
-    <img src="P1.jpg" alt="Image 4">
-    <button class="download-btn" data-image="P1.jpg" data-filename="P1.jpg">Download</button>
-    <button class="comment-btn" onclick="window.open('https://www.facebook.com/share/p/gqZNvEcGCWX6P99P/')">Comment</button>
-    <div class="comments-container" id="comments-4">
-      <!-- Comments will be added here -->
-    </div>
-  </div>
-
-    
-    
-      <div class="photo-gallery-item">
-    <img src="P2.jpeg" alt="Image 4">
-    <button class="download-btn" data-image="P2.jpeg" data-filename="P1.jpg">Download</button>
-    <button class="comment-btn" onclick="window.open('https://www.facebook.com/share/p/6An6Sm7jNEs1JZm3/')">Comment</button>
-    <div class="comments-container" id="comments-4">
-      <!-- Comments will be added here -->
-    </div>
-  </div>
-
-    
-    
-      <div class="photo-gallery-item">
+      
+  <div class="photo-gallery-item">
     <img src="P3.jpg" alt="Image 4">
     <button class="download-btn" data-image="P3.jpg" data-filename="P1.jpg">Download</button>
     <button class="comment-btn" onclick="alert('Comment is disabled ')">Disable </button>
@@ -222,37 +192,90 @@
 </div>
 
 
+</div>    
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- More public photos here... -->
+      
+    </div>
+
+    <!-- Private Photos Section (Hidden by Default) -->
+    <div class="private-photo-section">
+      <h2><i class="fas fa-lock"></i> Private Photos</h2> <!-- Keep lock icon here -->
+      <input type="password" id="passwordInput" placeholder="Enter password">
+      <button onclick="unlockPrivatePhotos()">Unlock</button> <!-- No icon for unlock button -->
+      
+      <div id="privatePhotos" class="photo-gallery" style="display: none;">
+        <div class="photo-gallery-item">
+          <img src="pvt1.jpg" alt="Pvt1">
+          <button class="download-btn" data-image="pvt1.jpg" data-filename="pvt1.jpg">Download</button>
+        </div>
+
+        <div class="photo-gallery-item">
+          <img src="pvt2.jpg" alt="pvt2.jpg">
+          <button class="download-btn" data-image="pvt2.jpg" data-filename="pvt2.jpg">Download</button>
+        </div>
+
+        <!-- More private photos here... -->
+        
+      </div>
+    </div>
+  </div>
 </div>
 
-
-
-
-
-
-
-
-
-<!-- Fullscreen modal structure -->
+<!-- Fullscreen modal -->
 <div id="fullscreen-modal" class="fullscreen-modal">
   <span class="close-modal">&times;</span>
   <img class="fullscreen-modal-content" id="fullscreen-image">
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-
-
 <script src="scriptsphoto.js"></script>
+
+<script>
+  function unlockPrivatePhotos() {
+    const password = document.getElementById("passwordInput").value;
+    const correctPassword = "aallamin"; // Change this to your actual password
+    const passwordInput = document.getElementById("passwordInput");
+
+    if (password === correctPassword) {
+      // Success: Show private photos with fade-in effect
+      document.getElementById("privatePhotos").style.display = "block";
+      document.querySelector(".private-photo-section h2 i").classList.replace("fa-lock", "fa-unlock"); // Change lock to unlock icon
+      document.querySelector(".private-photo-section h2").style.color = "#28a745"; // Change heading color to green
+
+      // Apply fade-in animation to private photos
+      document.getElementById("privatePhotos").classList.add("fade-in");
+    } else {
+      // Incorrect password: Shake the password input field
+      passwordInput.classList.add("shake");
+      setTimeout(() => {
+        passwordInput.classList.remove("shake"); // Remove shake effect after 1 second
+      }, 1000);
+      alert("Incorrect password! Try again plzz");
+    }
+  }
+</script>
 </body>
 </html>
