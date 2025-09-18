@@ -24,7 +24,10 @@
 <body>
   
   
-
+<div id="loader">
+  <div class="spinner"></div>
+  <h2 class="loader-name">Khan Al-amin</h2>
+</div>
 
   
 
@@ -168,6 +171,25 @@
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="scripts.js"></script>
+<script>
+  const loader = document.getElementById("loader");
+  const startTime = Date.now();
 
+  window.addEventListener("load", () => {
+    const loadTime = Date.now() - startTime;
+
+    if (loadTime < 1000) {
+      // Fast net → spinner + name shows exactly 1s
+      setTimeout(() => {
+        loader.classList.add("fade-out");
+        setTimeout(() => loader.style.display = "none", 500);
+      }, 1000 - loadTime);
+    } else {
+      // Slow net → keep showing until page fully loaded
+      loader.classList.add("fade-out");
+      setTimeout(() => loader.style.display = "none", 500);
+    }
+  });
+</script>
 </body>
   </html>
