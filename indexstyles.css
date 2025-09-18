@@ -4,7 +4,7 @@
   padding: 0;
   background-color: black;
   box-sizing: border-box; /* Ensures padding doesn't affect the element's width/height */
- 
+ overflow-x: hidden;
 }
 
 body {
