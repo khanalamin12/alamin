@@ -1,7 +1,6 @@
 
-       
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +12,36 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <style>
+    /* Small styling for the PDF block */
+    .pdf-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      padding: 20px;
+      background: #fafafa;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease-in-out;
+    }
+    .pdf-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .pdf-item i {
+      font-size: 50px;
+      color: red;
+      margin-bottom: 10px;
+    }
+    .pdf-item p {
+      font-size: 16px;
+      margin: 8px 0;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
@@ -36,73 +65,82 @@
     
     <!-- Public Photos Section -->
     <div class="photo-gallery">
+      <!-- your existing public photo items stay unchanged -->
+      <!-- ... -->
+    </div>
 
-      <!-- Image Example -->
-      <div class="photo-gallery-item">
-        <img src="i1.jpg" alt="Image 1">
-        <button class="download-btn" data-image="i1.jpg" data-filename="image1.jpg">Download</button>
-        <button class="comment-btn" onclick="window.open('https://www.facebook.com/share/p/ESDYKKsczsnUg4TB/')">Comment</button>
-      </div>
+    <!-- Private Photos Section (Hidden by Default) -->
+    <div class="private-photo-section">
+      <h2><i class="fas fa-lock"></i> Private Section</h2>
+      <input type="password" id="passwordInput" placeholder="Enter password">
+      <button onclick="unlockPrivatePhotos()">Unlock</button>
       
-      <div class="photo-gallery-item">
-        <img src="P3.jpg" alt="Image 3">
-        <button class="download-btn" data-image="P3.jpg" data-filename="P3.jpg">Download</button>
-        <button class="comment-btn" onclick="alert('Comment is disabled')">Disable</button>
-        <div class="comments-container" id="comments-3">
-          <!-- Comments will be added here -->
+      <div id="privatePhotos" class="photo-gallery" style="display: none;">
+        
+        <!-- Existing Private Photos -->
+        <div class="photo-gallery-item">
+          <img src="pvt1.jpg" alt="Pvt1">
+          <button class="download-btn" data-image="pvt1.jpg" data-filename="pvt1.jpg">Download</button>
         </div>
+        <div class="photo-gallery-item">
+          <img src="pvt2.jpg" alt="pvt2.jpg">
+          <button class="download-btn" data-image="pvt2.jpg" data-filename="pvt2.jpg">Download</button>
+        </div>
+        <div class="photo-gallery-item">
+          <img src="pvt3.jpg" alt="pvt3.jpg">
+          <button class="download-btn" data-image="pvt3.jpg" data-filename="pvt3.jpg">Download</button>
+        </div>
+        <div class="photo-gallery-item">
+          <img src="pvt4.jpg" alt="pvt4.jpg">
+          <button class="download-btn" data-image="pvt4.jpg" data-filename="pvt4.jpg">Download</button>
+        </div>
+        <div class="photo-gallery-item">
+          <img src="IMG_20231228_213158.jpg" alt="IMG_20231228_213158.jpg">
+          <button class="download-btn" data-image="IMG_20231228_213158.jpg" data-filename="IMG_20231228_213158.jpg">Download</button>
+        </div>
+
+        <!-- 🔒 Password-Protected PDF -->
+        <div class="photo-gallery-item pdf-item">
+          <i class="fa-solid fa-file-pdf"></i>
+          <p>Class 10 Class Routine</p>
+          <a href="Class10ClassRoutine.pdf" download="Class10ClassRoutine.pdf">
+            <button class="download-btn">Download PDF</button>
+          </a>
+        </div>
+
       </div>
+    </div>
+  </div>
+</div>
 
-      <div class="photo-gallery-item">
-        <img src="P4.jpg" alt="Image 4">
-        <button class="download-btn" data-image="P4.jpg" data-filename="P4.jpg">Download</button>
-      </div>
+<!-- Fullscreen modal -->
+<div id="fullscreen-modal" class="fullscreen-modal">
+  <span class="close-modal">&times;</span>
+  <img class="fullscreen-modal-content" id="fullscreen-image">
+</div>
 
-      <!-- PDF Section -->
-      <div class="photo-gallery-item">
-        <h2>Class 10 Class Routine (PDF)</h2>
-        <!-- Embedded PDF -->
-        <embed src="Class10ClassRoutine.pdf" type="application/pdf" width="100%" height="500px" />
-        <br>
-        <!-- Download Button -->
-        <button class="download-btn" data-image="Class10ClassRoutine.pdf" data-filename="Class10ClassRoutine.pdf">
-          Download PDF
-        </button>
-      </div>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="scriptsphoto.js"></script>
 
-    </div><!-- close photo-gallery -->
-  </div><!-- close photo-gallery-container -->
-</div><!-- close main -->
-
-<!-- JavaScript -->
 <script>
-  // Scroll to top button
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  function unlockPrivatePhotos() {
+    const password = document.getElementById("passwordInput").value;
+    const correctPassword = "aallamin"; // Change this to your actual password
+    const passwordInput = document.getElementById("passwordInput");
+
+    if (password === correctPassword) {
+      document.getElementById("privatePhotos").style.display = "block";
+      document.querySelector(".private-photo-section h2 i").classList.replace("fa-lock", "fa-unlock");
+      document.querySelector(".private-photo-section h2").style.color = "#28a745";
+      document.getElementById("privatePhotos").classList.add("fade-in");
+    } else {
+      passwordInput.classList.add("shake");
+      setTimeout(() => {
+        passwordInput.classList.remove("shake");
+      }, 1000);
+      alert("Incorrect password! Try again plzz");
+    }
   }
-
-  // Download buttons
-  document.querySelectorAll(".download-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const fileUrl = btn.getAttribute("data-image");
-      const filename = btn.getAttribute("data-filename");
-
-      const link = document.createElement("a");
-      link.href = fileUrl;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    });
-  });
 </script>
-
 </body>
 </html>
-
-
-
-
-
-
-
