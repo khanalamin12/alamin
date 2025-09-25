@@ -252,7 +252,7 @@ nav ul li a[style*="color:red"] {
 /* Skills Section */
 .skill, .prog {
     text-align: center;
-    padding: 1.5rem 1rem;
+    padding: 4px 4px;
     overflow: hidden;
 }
 
