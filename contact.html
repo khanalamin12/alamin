@@ -1,240 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact — Khan Al-amin</title>
-
-  <!-- Fonts -->
+  <title>Khan Al-amin</title>
+  <link rel="stylesheet" href="contactstyles.css">
+  <!-- Font links starts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-  <!-- Shared styles -->
-  <link rel="stylesheet" href="shared.css">
-
-  <style>
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .contact-info h2 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(2rem,5vw,3.2rem);
-      font-weight: 300;
-      line-height: 1.15;
-      margin-bottom: 20px;
-    }
-    .contact-info p {
-      font-size: 0.95rem;
-      color: var(--text-sub);
-      line-height: 1.8;
-      margin-bottom: 36px;
-    }
-    .info-row {
-      display: flex; align-items: center; gap: 14px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.88rem;
-    }
-    .info-row:first-of-type { border-top: 1px solid var(--border); }
-    .info-row i { width:18px; color:var(--accent); }
-    .info-row a { color:var(--text-sub); transition:color 0.25s; }
-    .info-row a:hover { color:var(--accent); }
-
-    /* Form */
-    .contact-form-wrap {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 40px;
-    }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .form-group { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
-    .form-group label {
-      font-size:0.75rem; font-weight:500;
-      letter-spacing:0.07em;
-      text-transform:uppercase;
-      color:var(--text-sub);
-    }
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      padding:13px 16px;
-      background:var(--bg);
-      border:1px solid var(--border);
-      border-radius:10px;
-      font-family:inherit;
-      font-size:0.9rem;
-      color:var(--text);
-      outline:none;
-      resize:vertical;
-      transition:border-color 0.25s, box-shadow 0.25s;
-    }
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color:var(--accent);
-      box-shadow:0 0 0 3px rgba(139,111,82,0.12);
-    }
-    .form-group textarea { min-height:130px; }
-    .form-group input[type="file"] {
-      padding: 10px 14px;
-      font-size: 0.82rem;
-      color: var(--text-sub);
-    }
-    .form-group input[type="file"]::file-selector-button {
-      padding: 6px 14px;
-      border-radius: 6px;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-size: 0.78rem;
-      cursor: pointer;
-      margin-right: 10px;
-      transition: background 0.25s;
-    }
-    .form-group input[type="file"]::file-selector-button:hover {
-      background: var(--sand);
-    }
-    .form-submit-wrap { margin-top: 8px; }
-    .form-submit {
-      padding:14px 36px;
-      background:var(--charcoal);
-      color:var(--cream);
-      border-radius:50px;
-      font-size:0.88rem; font-weight:500;
-      letter-spacing:0.04em;
-      transition:all var(--transition);
-    }
-    [data-theme="dark"] .form-submit { background:var(--cream); color:var(--charcoal); }
-    .form-submit:hover { transform:translateY(-2px); box-shadow:var(--shadow); }
-
-    @media(max-width:760px){
-      .contact-layout { grid-template-columns:1fr; gap:48px; }
-      .form-row { grid-template-columns:1fr; }
-      .contact-form-wrap { padding:28px 20px; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <!-- Font links ends -->
 </head>
 <body>
-
-  <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
-    <a href="index.html" class="nav-logo">Khan <span>Al-amin</span></a>
-    <ul class="nav-links">
+<header>
+  <nav>
+    <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="photos.html">Photos</a></li>
       <li><a href="videos.html">Videos</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="contact.html" style="color:red;font-size: 20px; text-shadow: 2px 0px 4px red;">Contact</a></li>
       <li><a href="portfolio.html">Portfolio</a></li>
     </ul>
-    <div style="display:flex;align-items:center;gap:12px;">
-      <button class="theme-toggle" id="themeToggle"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
-      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-    </div>
   </nav>
+</header>
 
-  <!-- MOBILE NAV -->
-  <div class="mobile-nav" id="mobileNav">
-    <a href="index.html" class="mobile-link">Home</a>
-    <a href="photos.html" class="mobile-link">Photos</a>
-    <a href="videos.html" class="mobile-link">Videos</a>
-    <a href="contact.html" class="mobile-link">Contact</a>
-    <a href="portfolio.html" class="mobile-link">Portfolio</a>
-  </div>
+<h1>Contact with me:</h1>
 
-  <!-- PAGE HERO -->
-  <div class="page-hero">
-    <div class="container">
-      <div class="page-hero-label">Get in touch</div>
-      <h1 class="page-hero-title">Contact Me</h1>
-      <p class="page-hero-sub">Have a project, question, or just want to say hello?</p>
+<div class="container">
+  <form action="https://formspree.io/f/xvgpdnpn" method="post" enctype="multipart/form-data">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" placeholder="Enter your name" required> <br />
+    
+    <label for="sub">Subject:</label>
+    <input type="text" name="sub" id="sub" placeholder="Enter your subject" required> <br />
+    
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" placeholder="example@gmail.com" required> <br />
+    
+    <label for="message">Message:</label>
+    <textarea name="message" id="message" cols="30" rows="10" placeholder="Drop your message"></textarea> <br />
+    
+    <!-- File upload input -->
+    <label for="file">Attach a file:</label>
+    <input type="file" name="file" id="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.zip"> <br />
+    
+    <div class="button-container">
+      <button type="submit">Send</button>
     </div>
-  </div>
+  </form>
+</div>
 
-  <!-- CONTACT -->
-  <section class="page-section">
-    <div class="container">
-      <div class="contact-layout">
-        <div class="contact-info reveal">
-          <h2>Let's create something together</h2>
-          <p>I'm always open to new projects, collaborations, and interesting conversations. Reach out through the form or any of the channels below.</p>
-
-          <div class="info-row">
-            <i class="fab fa-youtube"></i>
-            <a href="https://youtube.com/@tpshorts363" target="_blank">YouTube — @tpshorts363</a>
-          </div>
-          <div class="info-row">
-            <i class="fab fa-facebook"></i>
-            <a href="https://facebook.com" target="_blank">Facebook</a>
-          </div>
-          <div class="info-row">
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:your@email.com">your@email.com</a>
-          </div>
-          <div class="info-row">
-            <i class="fas fa-map-marker-alt"></i>
-            <span style="color:var(--text-sub)">Available worldwide, remotely</span>
-          </div>
-        </div>
-
-        <div class="contact-form-wrap reveal">
-          <form action="https://formspree.io/f/xvgpdnpn" method="post" enctype="multipart/form-data">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" placeholder="Your name" required>
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="your@email.com" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="sub">Subject</label>
-              <input type="text" name="sub" id="sub" placeholder="What's this about?" required>
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea name="message" id="message" placeholder="Tell me about your project or idea…"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="file">Attachment (optional)</label>
-              <input type="file" name="file" id="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.zip">
-            </div>
-            <div class="form-submit-wrap">
-              <button type="submit" class="form-submit">Send Message</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-logo">Khan Al-amin</div>
-        <div class="footer-copy">© 2025 Khan Al-amin. All rights reserved.</div>
-        <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="photos.html">Photos</a>
-          <a href="videos.html">Videos</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="shared-nav.js"></script>
 </body>
 </html>
