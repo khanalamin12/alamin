@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Photos — Khan Al-amin</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="shared.css">
+
+  <style>
+    /* Gallery grid */
+    .gallery-grid {
+      columns: 3;
+      column-gap: 16px;
+    }
+    @media(max-width:900px){ .gallery-grid { columns: 2; } }
+    @media(max-width:560px){ .gallery-grid { columns: 1; } }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all var(--transition);
+      position: relative;
+    }
+    .gallery-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .gallery-item img {
+      width: 100%; height: auto;
+      display: block;
+      cursor: pointer;
+      transition: transform var(--transition);
+    }
+    .gallery-item:hover img { transform: scale(1.02); }
+    .gallery-item-actions {
+      display: flex; gap: 8px;
+      padding: 10px 12px;
+    }
+    .action-btn {
+      flex: 1;
+      padding: 8px 0;
+      border-radius: 8px;
+      font-size: 0.75rem; font-weight: 500;
+      text-align: center;
+      transition: all 0.25s;
+    }
+    .dl-btn { background: var(--bg3); color: var(--text-sub); }
+    .dl-btn:hover { background: var(--sand); color: var(--text); }
+    .cm-btn { background: var(--bg3); color: var(--text-sub); }
+    .cm-btn:hover { background: var(--sand); color: var(--text); }
+
+    /* Fullscreen modal */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 2000;
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw; max-height: 88vh;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute; top: 24px; right: 32px;
+      font-size: 2rem; color: rgba(255,255,255,0.7);
+      cursor: pointer; transition: color 0.2s;
+    }
+    .lightbox-close:hover { color: #fff; }
+
+    /* Private section */
+    .private-section {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      margin-top: 60px;
+    }
+    .private-section h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.8rem; font-weight: 300;
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px;
+    }
+    .private-section h2 i { color: var(--gold); font-size: 1.3rem; }
+    .private-section p { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 20px; }
+    .unlock-row {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      align-items: center;
+    }
+    .unlock-row input[type="password"] {
+      padding: 12px 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-family: inherit; font-size: 0.9rem;
+      color: var(--text); outline: none;
+      width: 240px;
+      transition: border-color 0.25s;
+    }
+    .unlock-row input[type="password"]:focus { border-color: var(--accent); }
+    .unlock-btn {
+      padding: 12px 24px;
+      background: var(--charcoal);
+      color: var(--cream);
+      border-radius: 50px;
+      font-size: 0.85rem; font-weight: 500;
+      transition: all var(--transition);
+    }
+    [data-theme="dark"] .unlock-btn { background: var(--cream); color: var(--charcoal); }
+    .unlock-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+    #privatePhotos { display: none; margin-top: 32px; }
+    #privatePhotos .gallery-grid { margin-top: 0; }
+
+    .shake { animation: shake 0.6s ease; }
+    @keyframes shake {
+      0%,100%{ transform:translateX(0) }
+      20%    { transform:translateX(-8px) }
+      60%    { transform:translateX(8px) }
+      80%    { transform:translateX(-4px) }
+    }
+
+    /* Scroll up */
+    #scrollUpBtn {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 46px; height: 46px;
+      background: var(--charcoal);
+      color: var(--cream);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      opacity: 0; pointer-events: none;
+      transition: all 0.3s;
+      box-shadow: var(--shadow);
+      z-index: 500;
+    }
+    [data-theme="dark"] #scrollUpBtn { background: var(--cream); color: var(--charcoal); }
+    #scrollUpBtn.show { opacity: 1; pointer-events: auto; }
+    #scrollUpBtn:hover { transform: translateY(-3px); }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">Khan <span>Al-amin</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="photos.html" class="active">Photos</a></li>
+      <li><a href="videos.html">Videos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button class="theme-toggle" id="themeToggle"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-link">Home</a>
+    <a href="photos.html" class="mobile-link">Photos</a>
+    <a href="videos.html" class="mobile-link">Videos</a>
+    <a href="contact.html" class="mobile-link">Contact</a>
+    <a href="portfolio.html" class="mobile-link">Portfolio</a>
+  </div>
+
+  <!-- SCROLL UP -->
+  <button id="scrollUpBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero-label">Visual diary</div>
+      <h1 class="page-hero-title">Photo Gallery</h1>
+      <p class="page-hero-sub">A curated collection of moments, places, and perspectives.</p>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <section class="page-section">
+    <div class="container">
+      <div class="gallery-grid">
+        <!-- Public Photos -->
+        <div class="gallery-item">
+          <img src="i1.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="i1.jpg" data-filename="image1.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="window.open('https://www.facebook.com/share/p/ESDYKKsczsnUg4TB/')"><i class="fab fa-facebook"></i> Comment</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="P3.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="P3.jpg" data-filename="P3.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="alert('Comments disabled')"><i class="fas fa-comment"></i> Disabled</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="P4.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="P4.jpg" data-filename="P4.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="window.open('https://www.facebook.com/share/p/txYENBp2wse7Bkix/')"><i class="fab fa-facebook"></i> Comment</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="P5.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="P5.jpg" data-filename="P5.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="window.open('https://www.facebook.com/share/Ysj3THEN3BF7Qymg/')"><i class="fab fa-facebook"></i> Comment</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="P6.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="P6.jpg" data-filename="P6.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="window.open('https://www.facebook.com/share/uFtdxUXW9G6d62dX/')"><i class="fab fa-facebook"></i> Comment</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="P7.jpeg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="P7.jpeg" data-filename="P7.jpeg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="window.open('https://www.facebook.com/share/VuFjH4aDMFkWeiwL/')"><i class="fab fa-facebook"></i> Comment</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="i3.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="i3.jpg" data-filename="image2.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="window.open('https://www.facebook.com/share/p/hDHVh1wzy6K9pMge/?mibextid=oFDknk')"><i class="fab fa-facebook"></i> Comment</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="i5.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="i5.jpg" data-filename="image3.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="window.open('https://www.facebook.com/share/p/P1NcpdGzpWvVxP9c/?mibextid=oFDknk')"><i class="fab fa-facebook"></i> Comment</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="1718594370178.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="1718594370178.jpg" data-filename="image4.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="window.open('https://www.facebook.com/share/p/w9RJnE6Y1zAr8NHk/?mibextid=oFDknk')"><i class="fab fa-facebook"></i> Comment</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="1718622007579.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="1718622007579.jpg" data-filename="image5.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="window.open('https://www.facebook.com/share/p/kGf2bMGsTNQ2pwyB/?mibextid=oFDknk')"><i class="fab fa-facebook"></i> Comment</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="i6.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="i6.jpg" data-filename="image6.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="window.open('https://www.facebook.com/share/HhMMbqu7TXMoDHjr/?mibextid=xfxF2i')"><i class="fab fa-facebook"></i> Comment</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="i7.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="i7.jpg" data-filename="image7.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="window.open('https://www.facebook.com/share/p/aWgPMjSfNXTip7M2/?mibextid=oFDknk')"><i class="fab fa-facebook"></i> Comment</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="i2.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="i2.jpg" data-filename="image8.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="alert('Comments disabled')"><i class="fas fa-comment"></i> Disabled</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="1718494532168-02.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="1718494532168-02.jpg" data-filename="image9.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="window.open('https://www.facebook.com/share/p/V1RyPFYkGwE9LCTQ/?mibextid=oFDknk')"><i class="fab fa-facebook"></i> Comment</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="1718517684943.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="1718517684943.jpg" data-filename="image10.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="window.open('https://www.facebook.com/share/rrdJWGurs1y1p5Vb/?mibextid=oFDknk')"><i class="fab fa-facebook"></i> Comment</button>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="20260220_124629.jpg" alt="Photo" onclick="openLightbox(this.src)">
+          <div class="gallery-item-actions">
+            <button class="action-btn dl-btn" data-image="20260220_124629.jpg" data-filename="20260220_124629.jpg"><i class="fas fa-download"></i> Save</button>
+            <button class="action-btn cm-btn" onclick="window.open('https://www.facebook.com/share/rrdJWGurs1y1p5Vb/?mibextid=oFDknk')"><i class="fab fa-facebook"></i> Comment</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Private section -->
+      <div class="private-section reveal">
+        <h2><i class="fas fa-lock" id="lockIcon"></i> Private Photos</h2>
+        <p>Enter the password to view private content.</p>
+        <div class="unlock-row">
+          <input type="password" id="passwordInput" placeholder="Enter password">
+          <button class="unlock-btn" onclick="unlockPrivatePhotos()">Unlock</button>
+        </div>
+
+        <div id="privatePhotos">
+          <div class="gallery-grid" style="margin-top:24px;">
+            <div class="gallery-item">
+              <img src="pvt1.jpg" alt="Private photo" onclick="openLightbox(this.src)">
+              <div class="gallery-item-actions">
+                <button class="action-btn dl-btn" data-image="pvt1.jpg" data-filename="pvt1.jpg"><i class="fas fa-download"></i> Save</button>
+              </div>
+            </div>
+            <div class="gallery-item">
+              <img src="pvt2.jpg" alt="Private photo" onclick="openLightbox(this.src)">
+              <div class="gallery-item-actions">
+                <button class="action-btn dl-btn" data-image="pvt2.jpg" data-filename="pvt2.jpg"><i class="fas fa-download"></i> Save</button>
+              </div>
+            </div>
+            <div class="gallery-item">
+              <img src="pvt3.jpg" alt="Private photo" onclick="openLightbox(this.src)">
+              <div class="gallery-item-actions">
+                <button class="action-btn dl-btn" data-image="pvt3.jpg" data-filename="pvt3.jpg"><i class="fas fa-download"></i> Save</button>
+              </div>
+            </div>
+            <div class="gallery-item">
+              <img src="pvt4.jpg" alt="Private photo" onclick="openLightbox(this.src)">
+              <div class="gallery-item-actions">
+                <button class="action-btn dl-btn" data-image="pvt4.jpg" data-filename="pvt4.jpg"><i class="fas fa-download"></i> Save</button>
+              </div>
+            </div>
+            <div class="gallery-item">
+              <img src="IMG_20231228_213158.jpg" alt="Private photo" onclick="openLightbox(this.src)">
+              <div class="gallery-item-actions">
+                <button class="action-btn dl-btn" data-image="IMG_20231228_213158.jpg" data-filename="IMG_20231228_213158.jpg"><i class="fas fa-download"></i> Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightboxDirect()">&times;</span>
+    <img id="lightboxImg" src="" alt="Fullscreen view">
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Khan Al-amin</div>
+        <div class="footer-copy">© 2025 Khan Al-amin. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="videos.html">Videos</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared-nav.js"></script>
+  <script>
+    /* Lightbox */
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(e) {
+      if (e.target === document.getElementById('lightbox')) closeLightboxDirect();
+    }
+    function closeLightboxDirect() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    /* Download buttons */
+    document.querySelectorAll('.dl-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.href = btn.dataset.image;
+        link.download = btn.dataset.filename;
+        link.click();
+      });
+    });
+
+    /* Scroll-up button */
+    const scrollBtn = document.getElementById('scrollUpBtn');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('show', window.scrollY > 400);
+    });
+
+    /* Private unlock */
+    function unlockPrivatePhotos() {
+      const pw  = document.getElementById('passwordInput').value;
+      const inp = document.getElementById('passwordInput');
+      if (pw === 'aallamin') {
+        document.getElementById('privatePhotos').style.display = 'block';
+        document.getElementById('lockIcon').className = 'fas fa-unlock';
+        inp.style.borderColor = '#5cb85c';
+      } else {
+        inp.classList.add('shake');
+        inp.style.borderColor = 'var(--accent)';
+        setTimeout(() => inp.classList.remove('shake'), 700);
+        alert('Incorrect password — try again.');
+      }
+    }
+
+    /* Reveal observer */
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
+    }, { threshold:0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
