@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+  
+  
+    <meta name="description" content="Welcome to the official website of Khan Al-Amin. Explore my projects, skills, web development work, and technology journey.">
+  <meta name="keywords" content="Khan Al-Amin, Khan Alamin, web developer, frontend developer, HTML CSS JavaScript, website developer, technology">
+  <meta name="author" content="Khan Al-Amin">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <
+  <meta name="google-site-verification" content="ERQGhauhlXYUJlICsJpqcoOPd3H1radn6La9GnvZ6ow" />
+  <link rel="stylesheet" href="indexstyles.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="icon" type="image/png" href="logo.png">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+  
+  
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Photos — Khan Al-amin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing:border-box;margin:0;padding:0; }
+    :root { --bg:#0a0a0a;--surface:#111;--surface2:#1a1a1a;--accent:#e8174a;--text:#fff;--text2:#aaa;--border:#222; }
+    body { font-family:'Inter',sans-serif;background:var(--bg);color:var(--text); }
+    header { position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:rgba(10,10,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border); }
+    .logo { display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:800;font-size:18px;white-space:nowrap; }
+    .logo-icon { width:36px;height:36px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid var(--accent); }
+    .logo-icon img { width:100%;height:100%;object-fit:cover;object-position:top center;display:block; }
+    /* ── HAMBURGER BUTTON ── */
+    .hamburger {
+      width:46px;height:46px;background:var(--accent);border-radius:50%;border:none;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:5px;cursor:pointer;position:relative;z-index:300;
+      transition:transform 0.4s cubic-bezier(.34,1.56,.64,1),box-shadow 0.3s ease;
+    }
+    .hamburger:hover { transform:scale(1.1);box-shadow:0 0 0 8px rgba(232,23,74,0.18); }
+    .hamburger.active { box-shadow:0 0 0 12px rgba(232,23,74,0.12); }
+    .hamburger span {
+      display:block;width:20px;height:2px;background:#fff;border-radius:2px;
+      transition:transform 0.4s cubic-bezier(.34,1.56,.64,1),opacity 0.3s ease,width 0.3s ease;
+      transform-origin:center;
+    }
+    .hamburger.active span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity:0;transform:scaleX(0); }
+    .hamburger.active span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+    /* ── BACKDROP ── */
+    .nav-backdrop {
+      display:none;position:fixed;inset:0;z-index:190;
+      background:rgba(0,0,0,0);backdrop-filter:blur(0px);
+      transition:background 0.4s ease,backdrop-filter 0.4s ease;
+    }
+    .nav-backdrop.open {
+      display:block;background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);
+    }
+
+    /* ── BURST MENU PANEL ── */
+    .nav-overlay {
+      display:block;
+      position:fixed;
+      top:14px;right:14px;
+      z-index:250;
+      pointer-events:none;
+    }
+    .nav-overlay a {
+      position:absolute;right:0;
+      display:flex;align-items:center;justify-content:flex-end;gap:10px;
+      color:#fff;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:0.3px;
+      background:#1a1a1a;border:1px solid var(--border);border-radius:50px;
+      padding:6px 14px 6px 12px;white-space:nowrap;
+      pointer-events:none;
+      opacity:0;
+      transform:scale(0.4);
+      transform-origin:right top;
+      transition:opacity 0.35s cubic-bezier(.2,.8,.2,1),transform 0.45s cubic-bezier(.34,1.56,.64,1),border-color 0.25s ease,background 0.25s ease;
+    }
+    .nav-overlay a:hover { background:var(--accent);border-color:var(--accent);color:#fff; }
+
+    /* Open state */
+    .nav-overlay.open a { opacity:1;pointer-events:auto;transform:scale(1); }
+    .nav-overlay a:nth-child(1) { top:56px; }
+    .nav-overlay a:nth-child(2) { top:98px; }
+    .nav-overlay a:nth-child(3) { top:140px; }
+    .nav-overlay a:nth-child(4) { top:182px; }
+    .nav-overlay a:nth-child(5) { top:224px; }
+    .nav-overlay a:nth-child(6) { top:266px; }
+    .nav-overlay a:nth-child(7) { top:308px; }
+    .nav-overlay a:nth-child(8) { top:350px; }
+
+    /* Closed: collapse to button */
+    .nav-overlay:not(.open) a:nth-child(1) { transform:scale(0.3) translateY(0px); }
+    .nav-overlay:not(.open) a:nth-child(2) { transform:scale(0.3) translateY(-42px); }
+    .nav-overlay:not(.open) a:nth-child(3) { transform:scale(0.3) translateY(-84px); }
+    .nav-overlay:not(.open) a:nth-child(4) { transform:scale(0.3) translateY(-126px); }
+    .nav-overlay:not(.open) a:nth-child(5) { transform:scale(0.3) translateY(-168px); }
+    .nav-overlay:not(.open) a:nth-child(6) { transform:scale(0.3) translateY(-210px); }
+    .nav-overlay:not(.open) a:nth-child(7) { transform:scale(0.3) translateY(-252px); }
+    .nav-overlay:not(.open) a:nth-child(8) { transform:scale(0.3) translateY(-294px); }
+
+    /* Staggered open delays */
+    .nav-overlay.open a:nth-child(1) { transition-delay:0.00s; }
+    .nav-overlay.open a:nth-child(2) { transition-delay:0.05s; }
+    .nav-overlay.open a:nth-child(3) { transition-delay:0.10s; }
+    .nav-overlay.open a:nth-child(4) { transition-delay:0.15s; }
+    .nav-overlay.open a:nth-child(5) { transition-delay:0.20s; }
+    .nav-overlay.open a:nth-child(6) { transition-delay:0.25s; }
+    .nav-overlay.open a:nth-child(7) { transition-delay:0.30s; }
+    .nav-overlay.open a:nth-child(8) { transition-delay:0.35s; }
+    .nav-overlay:not(.open) a { transition-delay:0s !important; }
+
+    /* hide old close btn */
+    .nav-close { display:none !important; }
+
+    main { padding-top:100px; }
+    .page-hero { padding:40px 24px 32px; }
+    .eyebrow { font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px;display:block; }
+    h1 { font-size:clamp(28px,8vw,48px);font-weight:900;letter-spacing:-.03em;margin-bottom:14px; }
+    .desc { font-size:14px;line-height:1.7;color:var(--text2);max-width:400px; }
+    .gallery-grid { padding:0 24px 64px;display:grid;grid-template-columns:1fr 1fr;gap:10px; }
+    .gallery-item { border-radius:12px;overflow:hidden;background:var(--surface2);aspect-ratio:1;position:relative;cursor:pointer;border:1px solid var(--border);transition:transform .25s, box-shadow .25s; }
+    .gallery-item:hover { transform:scale(1.02); }
+    .gallery-item img { width:100%;height:100%;object-fit:cover; }
+    .gallery-placeholder { width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;background:linear-gradient(135deg,#1a0010,#111); }
+    .gallery-overlay { position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:flex-end;padding:12px;opacity:0;transition:opacity .2s; }
+    .gallery-item:hover .gallery-overlay { opacity:1;background:rgba(0,0,0,.5); }
+    .gallery-actions { display:flex;gap:8px; }
+    .gal-btn { background:var(--accent);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;cursor:pointer;text-decoration:none; }
+
+    /* Private section */
+    .private-section { padding:0 24px 64px; }
+    .private-header { background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px; }
+    .private-header h2 { font-size:18px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:10px; }
+    .private-header input { width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:14px;padding:12px 16px;outline:none;font-family:'Inter',sans-serif;margin-bottom:10px;transition:border-color .2s; }
+    .private-header input:focus { border-color:var(--accent); }
+    .unlock-btn { background:var(--accent);color:#fff;border:none;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;width:100%;transition:opacity .2s; }
+    .unlock-btn:hover { opacity:.85; }
+    /* Mobile: private grid hidden/shown */
+    #privatePhotos { display:none;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px; }
+    #privatePhotos.visible { display:grid; }
+    footer { padding:40px 24px;border-top:1px solid var(--border);text-align:center; }
+    .footer-tag { font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text2);margin-bottom:20px; }
+    .footer-socials { display:flex;justify-content:center;gap:12px;margin-bottom:20px; }
+    .social-btn { width:38px;height:38px;background:var(--surface2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:14px;text-decoration:none;transition:background .2s,color .2s; }
+    .social-btn:hover { background:var(--accent);color:#fff; }
+    .footer-copy { font-size:12px;color:var(--text2); }
+    /* Modal */
+    .modal { display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:300;align-items:center;justify-content:center; }
+    .modal.open { display:flex; }
+    .modal img { max-width:90vw;max-height:90vh;border-radius:12px;object-fit:contain; }
+    .modal-close { position:absolute;top:20px;right:20px;width:44px;height:44px;background:var(--surface2);border:none;border-radius:50%;color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center; }
+    .desktop-nav-links { display: none; }
+
+    /* ============================================================
+       DESKTOP / PC RESPONSIVE LAYER (≥969px)
+    ============================================================ */
+    @media (min-width: 969px) {
+      /* Nav */
+      header { padding: 18px 64px; }
+      .hamburger { display: none; }
+      .desktop-nav-links { display: flex; align-items: center; gap: 36px; }
+      .desktop-nav-links a { color: var(--text); text-decoration: none; font-size: 15px; font-weight: 600; transition: color .2s; position: relative; }
+      .desktop-nav-links a::after { content:"";position:absolute;left:50%;bottom:-8px;width:0;height:2px;background:linear-gradient(90deg,var(--accent),#ff6fa0);transition:width .35s cubic-bezier(.2,.8,.2,1),left .35s cubic-bezier(.2,.8,.2,1); }
+      .desktop-nav-links a:hover::after,.desktop-nav-links a.active::after { width:100%;left:0; }
+      .desktop-nav-links a:hover, .desktop-nav-links a.active { color: var(--accent); }
+      .nav-overlay { display: none !important; }
+      .nav-backdrop { display: none !important; }
+
+      /* Layout */
+      main { padding-top: 120px; max-width: 1280px; margin: 0 auto; padding-left: 64px; padding-right: 64px; }
+
+      /* Hero */
+      .page-hero { padding: 48px 0 40px; }
+      h1 { font-size: clamp(36px, 4vw, 56px); }
+      .desc { font-size: 16px; max-width: 520px; }
+
+      /* Public gallery — 4 columns */
+      .gallery-grid { padding: 0 0 80px; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+      .gallery-item { border-radius: 16px; }
+      .gallery-item:hover { transform: scale(1.03); box-shadow: 0 12px 32px rgba(0,0,0,0.5); }
+
+      /* Private section — full width, not capped */
+      .private-section { padding: 0 0 96px; }
+
+      /* Lock box: side-by-side layout */
+      .private-header {
+        display: grid;
+        grid-template-columns: 380px 1fr;
+        grid-template-rows: auto auto auto;
+        column-gap: 48px;
+        align-items: start;
+        padding: 36px 40px;
+        border-radius: 20px;
+        max-width: 100%;
+      }
+      .private-header h2 {
+        grid-column: 1;
+        grid-row: 1;
+        font-size: 22px;
+        margin-bottom: 16px;
+      }
+      .private-header input {
+        grid-column: 1;
+        grid-row: 2;
+        margin-bottom: 12px;
+      }
+      .unlock-btn {
+        grid-column: 1;
+        grid-row: 3;
+        width: 100%;
+      }
+      #privatePhotos {
+        grid-column: 2;
+        grid-row: 1 / span 3;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 0;
+        opacity: 0.18;
+        filter: blur(6px);
+        pointer-events: none;
+        transition: opacity 0.4s ease, filter 0.4s ease;
+      }
+      #privatePhotos.visible {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        opacity: 1;
+        filter: none;
+        pointer-events: auto;
+      }
+      #privatePhotos .gallery-item { aspect-ratio: 1; border-radius: 14px; }
+
+      /* Footer */
+      footer { padding: 48px 64px; }
+    }
+
+    @media (min-width: 1280px) {
+      /* Wider screens: 4-col private grid */
+      #privatePhotos,
+      #privatePhotos.visible {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (min-width: 1400px) {
+      main { max-width: 1400px; padding-left: 80px; padding-right: 80px; }
+      .gallery-grid { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html">
+    <div class="logo-icon">
+      <img src="logo.png" alt="Khan Al-amin">
+    </div>
+    <span style="font-size:clamp(14px,3.5vw,22px);font-weight:800;letter-spacing:-0.5px;white-space:nowrap;">KHAN <br> AL-AMIN</span>
+  </a>
+  <div class="desktop-nav-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="photos.html" class="active">Photos</a>
+    <a href="https://youtube.com/@tpshorts363?si=6CVx-BaSpLs9K9jG">Videos</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#portfolio">Portfolio</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <button class="hamburger" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- Backdrop -->
+<div class="nav-backdrop" id="navBackdrop"></div>
+
+<!-- Burst nav menu -->
+<nav class="nav-overlay" id="navOverlay">
+  <button class="nav-close"></button>
+  <a href="index.html">Home</a>
+  <a href="index.html#about">About</a>
+  <a href="photos.html" class="active">Photos</a>
+  <a href="videos.html">Videos</a>
+  <a href="index.html#experience">Experience</a>
+  <a href="index.html#skills">Skills</a>
+  <a href="index.html#portfolio">Portfolio</a>
+  <a href="index.html#contact">Contact</a>
+</nav>
+<main>
+  <div class="page-hero">
+    <span class="eyebrow">Gallery</span>
+    <h1>My <span style="color:var(--accent)">Photos</span></h1>
+    <p class="desc">A visual diary — moments captured, edited, and shared.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openModal('i1.jpg')">
+      <img src="i1.jpg" alt="Photo 1" onerror="this.parentElement.querySelector('.gallery-placeholder').style.display='flex';this.style.display='none'">
+      <div class="gallery-placeholder" style="display:none">📸</div>
+      <div class="gallery-overlay"><div class="gallery-actions"><a class="gal-btn" href="i1.jpg" download>⬇ Save</a><a class="gal-btn" href="https://www.facebook.com/share/p/ESDYKKsczsnUg4TB/" target="_blank">💬</a></div></div>
+    </div>
+    <div class="gallery-item" onclick="openModal('P3.jpg')">
+      <img src="P3.jpg" alt="Photo" onerror="this.parentElement.querySelector('.gallery-placeholder').style.display='flex';this.style.display='none'">
+      <div class="gallery-placeholder" style="display:none">📸</div>
+      <div class="gallery-overlay"><div class="gallery-actions"><a class="gal-btn" href="P3.jpg" download>⬇ Save</a></div></div>
+    </div>
+    <div class="gallery-item" onclick="openModal('P4.jpg')">
+      <img src="P4.jpg" alt="Photo" onerror="this.parentElement.querySelector('.gallery-placeholder').style.display='flex';this.style.display='none'">
+      <div class="gallery-placeholder" style="display:none">📸</div>
+      <div class="gallery-overlay"><div class="gallery-actions"><a class="gal-btn" href="P4.jpg" download>⬇ Save</a><a class="gal-btn" href="https://www.facebook.com/share/p/txYENBp2wse7Bkix/" target="_blank">💬</a></div></div>
+    </div>
+    <div class="gallery-item" onclick="openModal('P5.jpg')">
+      <img src="P5.jpg" alt="Photo" onerror="this.parentElement.querySelector('.gallery-placeholder').style.display='flex';this.style.display='none'">
+      <div class="gallery-placeholder" style="display:none">📸</div>
+      <div class="gallery-overlay"><div class="gallery-actions"><a class="gal-btn" href="P5.jpg" download>⬇ Save</a></div></div>
+    </div>
+    <div class="gallery-item" onclick="openModal('i3.jpg')">
+      <img src="i3.jpg" alt="Photo" onerror="this.parentElement.querySelector('.gallery-placeholder').style.display='flex';this.style.display='none'">
+      <div class="gallery-placeholder" style="display:none">📸</div>
+      <div class="gallery-overlay"><div class="gallery-actions"><a class="gal-btn" href="i3.jpg" download>⬇ Save</a></div></div>
+    </div>
+    <div class="gallery-item" onclick="openModal('i5.jpg')">
+      <img src="i5.jpg" alt="Photo" onerror="this.parentElement.querySelector('.gallery-placeholder').style.display='flex';this.style.display='none'">
+      <div class="gallery-placeholder" style="display:none">📸</div>
+      <div class="gallery-overlay"><div class="gallery-actions"><a class="gal-btn" href="i5.jpg" download>⬇ Save</a></div></div>
+    </div>
+    <div class="gallery-item" onclick="openModal('i6.jpg')">
+      <img src="i6.jpg" alt="Photo" onerror="this.parentElement.querySelector('.gallery-placeholder').style.display='flex';this.style.display='none'">
+      <div class="gallery-placeholder" style="display:none">📸</div>
+      <div class="gallery-overlay"><div class="gallery-actions"><a class="gal-btn" href="i6.jpg" download>⬇ Save</a></div></div>
+    </div>
+    <div class="gallery-item" onclick="openModal('i7.jpg')">
+      <img src="i7.jpg" alt="Photo" onerror="this.parentElement.querySelector('.gallery-placeholder').style.display='flex';this.style.display='none'">
+      <div class="gallery-placeholder" style="display:none">📸</div>
+      <div class="gallery-overlay"><div class="gallery-actions"><a class="gal-btn" href="i7.jpg" download>⬇ Save</a></div></div>
+    </div>
+  </div>
+
+  <!-- Private Section -->
+  <div class="private-section">
+    <div class="private-header">
+      <h2><i class="fa-solid fa-lock" id="lockIcon"></i> Private Photos</h2>
+      <input type="password" id="passwordInput" placeholder="Enter password to unlock">
+      <button class="unlock-btn" onclick="unlockPrivatePhotos()">Unlock</button>
+      <div id="privatePhotos">
+        <div class="gallery-item"><img src="pvt1.jpg" alt="" onerror="this.parentElement.querySelector('.gallery-placeholder').style.display='flex';this.style.display='none'"><div class="gallery-placeholder" style="display:none">🔒</div></div>
+        <div class="gallery-item"><img src="pvt2.jpg" alt="" onerror="this.parentElement.querySelector('.gallery-placeholder').style.display='flex';this.style.display='none'"><div class="gallery-placeholder" style="display:none">🔒</div></div>
+        <div class="gallery-item"><img src="pvt3.jpg" alt="" onerror="this.parentElement.querySelector('.gallery-placeholder').style.display='flex';this.style.display='none'"><div class="gallery-placeholder" style="display:none">🔒</div></div>
+        <div class="gallery-item"><img src="pvt4.jpg" alt="" onerror="this.parentElement.querySelector('.gallery-placeholder').style.display='flex';this.style.display='none'"><div class="gallery-placeholder" style="display:none">🔒</div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Modal -->
+<div class="modal" id="modal" onclick="closeModal()">
+  <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+  <img id="modalImg" src="" alt="">
+</div>
+
+<footer>
+  <p class="footer-tag">Let's connect</p>
+  <div class="footer-socials">
+    <a class="social-btn" href="https://youtube.com/@tpshorts363" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    <a class="social-btn" href="https://www.facebook.com/khanAlamin0092" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+    <a class="social-btn" href="https://www.instagram.com/khanalamin0092" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <a class="social-btn" href="https://x.com/Khan_alamin0092" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+  </div>
+  <p class="footer-copy">© 2026 Khan Al-amin. All rights reserved.</p>
+</footer>
+<script>
+  // ── Burst nav menu ──
+  const menuBtn     = document.getElementById('menuBtn');
+  const navOverlay  = document.getElementById('navOverlay');
+  const navBackdrop = document.getElementById('navBackdrop');
+
+  function openNav() {
+    navOverlay.classList.add('open');
+    navBackdrop.classList.add('open');
+    menuBtn.classList.add('active');
+    menuBtn.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    navOverlay.classList.remove('open');
+    navBackdrop.classList.remove('open');
+    menuBtn.classList.remove('active');
+    menuBtn.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  }
+  menuBtn.addEventListener('click', () => navOverlay.classList.contains('open') ? closeNav() : openNav());
+  navBackdrop.addEventListener('click', closeNav);
+  navOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+  // ── Modal ──
+  function openModal(src) { document.getElementById('modalImg').src=src; document.getElementById('modal').classList.add('open'); }
+  function closeModal() { document.getElementById('modal').classList.remove('open'); }
+
+  // ── Private photos ──
+  function unlockPrivatePhotos() {
+    const pw = document.getElementById('passwordInput').value;
+    const grid = document.getElementById('privatePhotos');
+    const lockIcon = document.getElementById('lockIcon');
+    if (pw === 'aallamin') {
+      grid.classList.add('visible');
+      lockIcon.className = 'fa-solid fa-unlock';
+    } else {
+      const input = document.getElementById('passwordInput');
+      input.style.borderColor = 'var(--accent)';
+      input.animate([{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(-4px)'},{transform:'translateX(4px)'},{transform:'translateX(0)'}],{duration:300});
+    }
+  }
+</script>
+</body>
+</html>
